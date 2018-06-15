@@ -29,14 +29,14 @@ class Company
     private $name;
 
     /**
-     * @ManyToMany(targetEntity="Market", inversedBy="companies")
-     * @JoinTable(name="companies_markets")
+     * @ORM\ManyToMany(targetEntity="Market", inversedBy="companies")
+     * @ORM\JoinTable(name="companies_markets")
      */
      private $markets;
 
 
     /**
-     * @ManyToMany(targetEntity="Stock", mappedBy="companies")
+     * @ORM\ManyToMany(targetEntity="Stock", mappedBy="companies")
      */
     private $stocks;
 

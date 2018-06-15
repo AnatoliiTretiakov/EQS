@@ -40,8 +40,8 @@ class Stock
      
 
      /**
-     * @ManyToMany(targetEntity="Company", inversedBy="stocks")
-     * @JoinTable(name="stocks_companies")
+     * @ORM\ManyToMany(targetEntity="Company", inversedBy="stocks")
+     * @ORM\JoinTable(name="stocks_companies")
      */
      private $companies;
 

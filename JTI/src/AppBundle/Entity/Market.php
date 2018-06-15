@@ -29,7 +29,7 @@ class Market
     private $name;
 
     /**
-     * @ManyToMany(targetEntity="Company", mappedBy="markets")
+     * @ORM\ManyToMany(targetEntity="Company", mappedBy="markets")
      */
     private $companies;
     
