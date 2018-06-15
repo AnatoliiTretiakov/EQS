@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Markets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for market in markets %}
+            <tr>
+                <td><a href="{{ path('market_show', { 'id': market.id }) }}">{{ market.id }}</a></td>
+                <td>{{ market.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('market_show', { 'id': market.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('market_edit', { 'id': market.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('market_new') }}">Create a new market</a>
+        </li>
+    </ul>
+{% endblock %}
