@@ -78,5 +78,72 @@ class Company
     {
         return $this->name;
     }
-}
 
+    /**
+     * Add market
+     *
+     * @param \AppBundle\Entity\Market $market
+     *
+     * @return Company
+     */
+    public function addMarket(\AppBundle\Entity\Market $market)
+    {
+        $this->markets[] = $market;
+
+        return $this;
+    }
+
+    /**
+     * Remove market
+     *
+     * @param \AppBundle\Entity\Market $market
+     */
+    public function removeMarket(\AppBundle\Entity\Market $market)
+    {
+        $this->markets->removeElement($market);
+    }
+
+    /**
+     * Get markets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMarkets()
+    {
+        return $this->markets;
+    }
+
+    /**
+     * Add stock
+     *
+     * @param \AppBundle\Entity\Stock $stock
+     *
+     * @return Company
+     */
+    public function addStock(\AppBundle\Entity\Stock $stock)
+    {
+        $this->stocks[] = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Remove stock
+     *
+     * @param \AppBundle\Entity\Stock $stock
+     */
+    public function removeStock(\AppBundle\Entity\Stock $stock)
+    {
+        $this->stocks->removeElement($stock);
+    }
+
+    /**
+     * Get stocks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
+    }
+}
