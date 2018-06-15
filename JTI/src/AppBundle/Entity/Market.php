@@ -28,6 +28,14 @@ class Market
      */
     private $name;
 
+    /**
+     * @ManyToMany(targetEntity="Company", mappedBy="markets")
+     */
+    private $companies;
+    
+    public function __construct() {
+        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id

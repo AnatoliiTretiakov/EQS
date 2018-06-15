@@ -28,6 +28,22 @@ class Company
      */
     private $name;
 
+    /**
+     * @ManyToMany(targetEntity="Market", inversedBy="companies")
+     * @JoinTable(name="companies_markets")
+     */
+     private $markets;
+
+
+    /**
+     * @ManyToMany(targetEntity="Stock", mappedBy="companies")
+     */
+    private $stocks;
+
+    public function __construct() {
+        $this->markets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->stocks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id

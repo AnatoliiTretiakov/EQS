@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stock
 {
+    const COMMON = 'common';
+    const PREFERRED = 'preferred';
+
     /**
      * @var int
      *
@@ -28,6 +31,23 @@ class Stock
      */
     private $price;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+     private $type;
+     
+
+     /**
+     * @ManyToMany(targetEntity="Company", inversedBy="stocks")
+     * @JoinTable(name="stocks_companies")
+     */
+     private $companies;
+
+     public function __construct() {
+        $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
