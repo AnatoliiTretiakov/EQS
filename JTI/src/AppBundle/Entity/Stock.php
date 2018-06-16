@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stock
 {
-    const COMMON = 'common';
-    const PREFERRED = 'preferred';
+    public const COMMON = 'Common';
+    public const PREFERRED = 'Preferred';
 
     /**
      * @var int

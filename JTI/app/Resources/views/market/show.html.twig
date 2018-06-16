@@ -1,32 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Market</h1>
-
-    <table>
+    <h1>{{ market.name }}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Company name</th>
+                <th scope="col">Stock Type</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ market.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ market.name }}</td>
-            </tr>
+            {% for company in market.companies %}
+                {% for stock in company.stocks %}
+                <tr>    
+                    <td>{{ company }}</td>
+                    <td>
+                        {{ stock }}
+                    </td>
+                    <td>
+                        {% if stock.type == constant('AppBundle\\Entity\\Stock::PREFERRED') %}
+                            <span class="badge badge-pill badge-primary">{{ stock.price }}</span>
+                        {% else %}
+                            <span class="badge badge-pill badge-warning">{{ stock.price }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('market_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('market_edit', { 'id': market.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="btn btn-info btn-md" href="{{ path('market_index') }}">Back to the list</a>
 {% endblock %}
