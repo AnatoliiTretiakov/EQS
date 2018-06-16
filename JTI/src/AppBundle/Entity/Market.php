@@ -104,4 +104,8 @@ class Market
     {
         return $this->companies;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
 }

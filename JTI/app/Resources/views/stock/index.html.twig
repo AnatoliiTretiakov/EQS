@@ -1,41 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Stocks list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Type</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stock in stocks %}
-            <tr>
-                <td><a href="{{ path('stock_show', { 'id': stock.id }) }}">{{ stock.id }}</a></td>
-                <td>{{ stock.price }}</td>
-                <td>{{ stock.type }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('stock_show', { 'id': stock.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('stock_edit', { 'id': stock.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('stock_new') }}">Create a new stock</a>
-        </li>
-    </ul>
+    <div id="wrapper">
+        <div id="container-fluid">
+            <div class="jumbotron bg-white">
+                <h1 class="display-6">Stocks</h1>
+                {% for stock in stocks %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ stock.type }}</td>
+                                <td>{{ stock.price }}</td>
+                                <td>
+                                    <ul class="nav justify-content-start">
+                                        <li class="nav-item">
+                                            <a href="{{ path('stock_show', { 'id': stock.id }) }}" class="btn btn-outline-info btn-md">show</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ path('stock_edit', { 'id': stock.id }) }}" class="btn btn-outline-info btn-md">edit</a> 
+                                        </li>
+                                    </ul>                          
+                                </td>
+                            </tr>                            
+                        </tbody>
+                    </table>                        
+                {% endfor %}                   
+                <a class="btn btn-info btn-md" href="{{ path('stock_new') }}">Create a new stock</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+

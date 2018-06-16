@@ -146,4 +146,8 @@ class Company
     {
         return $this->stocks;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
 }

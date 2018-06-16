@@ -140,4 +140,8 @@ class Stock
     {
         return $this->companies;
     }
+
+    public function __toString() {
+        return $this->type;
+    }
 }
