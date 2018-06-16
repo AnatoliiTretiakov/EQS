@@ -32,6 +32,12 @@ class Market
      * @ORM\ManyToMany(targetEntity="Company", mappedBy="markets")
      */
     private $companies;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Stock", mappedBy="markets")
+     */
+    private $stocks;
     
     public function __construct() {
         $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
@@ -107,5 +113,39 @@ class Market
 
     public function __toString() {
         return $this->name;
+    }
+
+    /**
+     * Add stock
+     *
+     * @param \AppBundle\Entity\Stock $stock
+     *
+     * @return Market
+     */
+    public function addStock(\AppBundle\Entity\Stock $stock)
+    {
+        $this->stocks[] = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Remove stock
+     *
+     * @param \AppBundle\Entity\Stock $stock
+     */
+    public function removeStock(\AppBundle\Entity\Stock $stock)
+    {
+        $this->stocks->removeElement($stock);
+    }
+
+    /**
+     * Get stocks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStocks()
+    {
+        return $this->stocks;
     }
 }

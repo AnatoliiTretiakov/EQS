@@ -45,6 +45,13 @@ class Stock
      */
      private $companies;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Market", inversedBy="stocks")
+     * @ORM\JoinTable(name="stocks_markets")
+     */
+     private $markets;
+
      public function __construct() {
         $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -143,5 +150,39 @@ class Stock
 
     public function __toString() {
         return $this->type;
+    }
+
+    /**
+     * Add market
+     *
+     * @param \AppBundle\Entity\Market $market
+     *
+     * @return Stock
+     */
+    public function addMarket(\AppBundle\Entity\Market $market)
+    {
+        $this->markets[] = $market;
+
+        return $this;
+    }
+
+    /**
+     * Remove market
+     *
+     * @param \AppBundle\Entity\Market $market
+     */
+    public function removeMarket(\AppBundle\Entity\Market $market)
+    {
+        $this->markets->removeElement($market);
+    }
+
+    /**
+     * Get markets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMarkets()
+    {
+        return $this->markets;
     }
 }

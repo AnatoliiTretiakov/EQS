@@ -13,7 +13,7 @@ class MarketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('companies');
+        $builder->add('name')->add('companies')->add('stocks');
     }/**
      * {@inheritdoc}
      */

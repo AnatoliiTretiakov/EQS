@@ -5,7 +5,7 @@
         <div id="container-fluid">
             <div class="jumbotron bg-white">
                 <h1 class="display-6">Stocks</h1>
-                {% for stock in stocks %}
+                
                     <table class="table">
                         <thead>
                             <tr>
@@ -15,6 +15,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for stock in stocks %}
                             <tr>
                                 <td>{{ stock.type }}</td>
                                 <td>{{ stock.price }}</td>
@@ -28,10 +29,11 @@
                                         </li>
                                     </ul>                          
                                 </td>
-                            </tr>                            
+                            </tr>  
+                            {% endfor %}                           
                         </tbody>
                     </table>                        
-                {% endfor %}                   
+                                  
                 <a class="btn btn-info btn-md" href="{{ path('stock_new') }}">Create a new stock</a>
             </div>
         </div>
