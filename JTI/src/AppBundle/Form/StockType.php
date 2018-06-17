@@ -17,10 +17,10 @@ class StockType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('price')
-            ->add('type', ChoiceType::class, array('choices' => array('Preferred' => 'Preferred', 'Common' => 'Common')))
-            ->add('companies')
-            ->add('markets');
+        $builder->add('price', null, array('attr' => array('class' => 'form-control')))
+            ->add('type', ChoiceType::class, array('choices' => array('Preferred' => 'Preferred', 'Common' => 'Common'), 'attr' => array('class' => 'form-control')))
+            ->add('companies', null, array('attr' => array('class' => 'form-control')))
+            ->add('markets', null, array('attr' => array('class' => 'form-control')));
     }/**
      * {@inheritdoc}
      */
