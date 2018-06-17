@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Stock
  *
  * @ORM\Table(name="stock")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StockRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Stock
 {
@@ -52,7 +54,14 @@ class Stock
      */
      private $markets;
 
-     public function __construct() {
+    /**
+    * @Gedmo\Timestampable(on="create")
+    * @ORM\Column(type="datetime",nullable=true)
+    */
+    private $createdAt;
+ 
+
+    public function __construct() {
         $this->companies = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -184,5 +193,29 @@ class Stock
     public function getMarkets()
     {
         return $this->markets;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Stock
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

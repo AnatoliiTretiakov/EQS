@@ -4,26 +4,39 @@
     <div id="wrapper">
         <div id="container-fluid">
             <div class="jumbotron bg-white">
-                <h1 class="display-6">Companies</h1>
-                {% for company in companies %}
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>{{ company.name }}</td>
-                                <td>
-                                    <ul class="nav justify-content-end">
-                                        <li class="nav-item">
-                                            <a href="{{ path('company_show', { 'id': company.id }) }}" class="btn btn-outline-info btn-md">show</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ path('company_edit', { 'id': company.id }) }}" class="btn btn-outline-info btn-md">edit</a> 
-                                        </li>
-                                    </ul>                          
-                                </td>
-                            </tr>                            
-                        </tbody>
-                    </table>                        
-                {% endfor %}                   
+                <h1 class="display-6">Company Stock Overview</h1>
+                <div class="row">
+                        {% for company in companies %}
+                            {% for stock in company.stocks %}
+                                <div class="col-sm-6">
+                                    {% if stock.type == constant('AppBundle\\Entity\\Stock::PREFERRED') %}
+                                        <div class="card border-primary mb-3">
+                                    {% else %}
+                                        <div class="card border-warning mb-3">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ company.name }}</h5>
+                                        <h6 class="card-title">{{ stock.type }}</h6>
+                                        {% for market in company.markets %}
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ market.name }}</td>
+                                                        {% if stock.type == constant('AppBundle\\Entity\\Stock::PREFERRED') %}
+                                                            <td class="badge badge-pill badge-primary">{{ stock.price }}</td>
+                                                        {% else %}
+                                                            <td class="badge badge-pill badge-warning">{{ stock.price }}</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                </tbody>
+                                            </table> 
+                                        {% endfor %} 
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endfor %} 
+                        {% endfor %} 
+                    </div>                 
                 <a class="btn btn-info btn-md" href="{{ path('company_new') }}">Create a new company</a>
             </div>
         </div>

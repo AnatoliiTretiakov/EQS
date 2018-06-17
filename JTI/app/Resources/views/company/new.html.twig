@@ -4,9 +4,10 @@
     <h1>Company creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.markets) }}
         <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
     <ul>
         <li>

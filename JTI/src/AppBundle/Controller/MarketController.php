@@ -66,7 +66,7 @@ class MarketController extends Controller
     public function showAction(Market $market)
     {
         $deleteForm = $this->createDeleteForm($market);
-
+        
         return $this->render('market/show.html.twig', array(
             'market' => $market,
             'delete_form' => $deleteForm->createView(),

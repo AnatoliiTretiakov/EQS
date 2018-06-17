@@ -7,6 +7,7 @@
             <tr>
                 <th scope="col">Company name</th>
                 <th scope="col">Stock Type</th>
+                <th scope="col">Entered</th>
                 <th scope="col">Price</th>
             </tr>
         </thead>
@@ -15,9 +16,8 @@
                 {% for stock in company.stocks %}
                 <tr>    
                     <td>{{ company }}</td>
-                    <td>
-                        {{ stock }}
-                    </td>
+                    <td>{{ stock }}</td>
+                    <td>{{ stock.createdAt }}</td>
                     <td>
                         {% if stock.type == constant('AppBundle\\Entity\\Stock::PREFERRED') %}
                             <span class="badge badge-pill badge-primary">{{ stock.price }}</span>

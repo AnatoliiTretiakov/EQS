@@ -4,9 +4,12 @@
     <h1>Stock creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.companies) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.price) }}
+        {{ form_row(form.markets) }}
         <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {{ form_end(form)}}
 
     <ul>
         <li>
